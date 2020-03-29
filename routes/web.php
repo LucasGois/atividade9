@@ -12,9 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('inicio');
+})->name('inicio');
 
 Route::get('/cliente/cadastro', 'ClienteController@cadastro');
 Route::get('/cliente/lista', 'ClienteController@lista')->name('lista_cliente');
+Route::post('/cliente/cadastro', 'ClienteController@cadastro')->name('cadastro_cliente');
 Route::post('/cliente/cadastrar', 'ClienteController@cadastrar')->name('cadastrar_cliente');

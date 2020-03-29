@@ -14,6 +14,19 @@ class ClienteController extends Controller
         ]);
     }
 
+    function cadastrar(Request $req){
+        $cliente = new Cliente();
+        $cliente->nome = $req->input('nome');
+        $cliente->endereco = $req->input('endereco');
+        $cliente->cep = $req->input('cep');
+        $cliente->cidade = $req->input('cidade');
+        $cliente->estado_id = $req->input('estado');
+
+        $cliente->save();
+
+        return redirect()->route('lista_cliente');
+    }
+
     function lista(){
         $clientes = Cliente::all();
 
@@ -27,17 +40,5 @@ class ClienteController extends Controller
             "clientes" => $clientes
         ]);
     }
-
-    function cadastrar(Request $req){
-        $cliente = new Cliente();
-        $cliente->nome = $req->input('nome');
-        $cliente->endereco = $req->input('endereco');
-        $cliente->cep = $req->input('cep');
-        $cliente->cidade = $req->input('cidade');
-        $cliente->estado_id = $req->input('estado');
-
-        $cliente->save();
-
-        return redirect()->route('lista_cliente');
-    }
+    
 }
