@@ -7,11 +7,19 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <title>@yield('title')</title>
+
+    <style>
+        body {
+            height: 100vh;
+            margin: 0px;
+            padding: 0px;
+        }
+    </style>
 </head>
 <body>
 
     @section('navbar')
-        <nav class="navbar navbar-expand-lg navbar-dark  bg-dark">
+        <nav class="mb-3 navbar navbar-expand-lg navbar-dark  bg-dark">
             <img src="{{ url('imagens/programacao_web.svg') }}" height=40 width=200 class="d-inline-block align-top" alt="">
             
             <a class="navbar-brand mb-0 h1" href="{{ route('inicio') }}">Atividade 9</a>
@@ -34,18 +42,14 @@
                 </ul>
             </div>
         </nav>
-
-        <div style="height: 20px;"></div>
     @show
 
     @section('titulo')
-        <div class="row align-items-center">
+        <div class="m-3 align-items-center">
             <div class="col d-flex justify-content-center">
                 <h1>@yield('title')</h1>
             </div>
         </div>
-
-        <div class="row" style="height: 20px;"></div>
     @show
 
     <div class="container">
