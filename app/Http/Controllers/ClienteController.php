@@ -22,9 +22,13 @@ class ClienteController extends Controller
         $cliente->cidade = $req->input('cidade');
         $cliente->estado_id = $req->input('estado');
 
-        $cliente->save();
+        try {
+            $cliente->save();
+            return redirect()->route('lista_cliente');
 
-        return redirect()->route('lista_cliente');
+        } catch (\Throwable $e) {
+            return redirect()->route('cadastro_cliente');
+        }
     }
 
     function lista(){

@@ -20,8 +20,11 @@
 
     @section('navbar')
         <nav class="mb-3 navbar navbar-expand-lg navbar-dark  bg-dark">
-            <img src="{{ url('imagens/programacao_web.svg') }}" height=40 width=200 class="d-inline-block align-top" alt="">
             
+            <a href="{{ route('inicio') }}">
+                <img src="{{ url('imagens/programacao_web.svg') }}" href="{{ route('inicio') }}" height=40 width=200 class="d-inline-block align-top" alt="">
+            </a>
+
             <a class="navbar-brand mb-0 h1" href="{{ route('inicio') }}">Atividade 9</a>
             
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
