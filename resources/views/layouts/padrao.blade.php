@@ -35,11 +35,11 @@
                 <ul class="navbar-nav">
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('cadastro_cliente') }}">Cadastrar</a>
+                        <a class="nav-link" href="{{ route('cliente_cadastro', [ 'id' => 0 ]) }}">Cadastrar</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('lista_cliente') }}">Listar</a>
+                        <a class="nav-link" href="{{ route('cliente_lista') }}">Listar</a>
                     </li>
 
                 </ul>
