@@ -41,8 +41,8 @@
                 <div class="form-group">
                     <label>Estado:</label>
                     <div class="input-group">
-                    <select class="custom-select" name="estado">
-                        @foreach($estados as $e)
+                    <select class="custom-select" name="cliente">
+                        @foreach(Cliente::all() as $e)
                         <option value="{{ $e->id }}">{{ $e->nome }}</option>
                         @endforeach
                     </select>

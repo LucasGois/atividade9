@@ -11,11 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('login');
-})->name('login');
+//Route::get('/', function () {
+//    return route('login_login');
+//});
 
-Route::get('/login', 'AppController@login')->name('login');
+Route::get('/', 'LoginController@login')->name('login');
+Route::get('/login/entrar', 'LoginController@entrar')->name('login_entrar');
+
 
 Route::get('/cliente/lista', 'ClienteController@lista')->name('cliente_lista');
 Route::get('/cliente/cadastro/{id}', 'ClienteController@cadastro')->name('cliente_cadastro');
