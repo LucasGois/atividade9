@@ -10,72 +10,56 @@ class ClienteController extends Controller
 {
     function lista(){
         $clientes = Cliente::all();
-
-        foreach($clientes as $cliente){
-            $estado = Estado::where('id', '=', $cliente->estado_id)->first();
-
-            $cliente->estado = $estado->nome;
-        }
         
         return view("cliente_lista", [
-            "clientes" => $clientes
-        ]);
+                "clientes" => $clientes
+            ]
+        );
     }
 
-    function cadastro(){
+    function cadastro($codigo){
+        
+        if ($codigo > 0){
+            $cliente = Cliente::find($codigo);
+        } else {
+            $cliente = new Cliente();
+        }
+
         return view("cliente_cadastro", [
-            "estados" => Estado::all()
-        ]);
+                "id" => $codigo,
+                "cliente" => $cliente,
+                "estados" => Estado::all()
+            ]
+        );
     }
 
-    function incluir(Request $req){
-        $cliente = new Cliente();
+    function salvar(Request $req, $id){
+
+        if ($id > 0){
+            $cliente = Cliente::find($id);
+        } else {
+            $cliente = new Cliente();
+        }
+
+        $cliente->usuario = $req->input('usuario');
+        $cliente->senha = $req->input('senha');
         $cliente->nome = $req->input('nome');
         $cliente->endereco = $req->input('endereco');
         $cliente->cep = $req->input('cep');
         $cliente->cidade = $req->input('cidade');
-        $cliente->estado_id = $req->input('estado');
+        $cliente->id_estado = $req->input('estado');
 
-        try {
-            $cliente->save();
-            return redirect()->route('cliente_lista');
-
-        } catch (\Throwable $e) {
-            return redirect()->route('cliente_cadastro');
-        }
+        $cliente->save();
+        return redirect()->route('cliente_lista');
     }
 
-    function alterar(Request $req){
-        $cliente = new Cliente();
-        $cliente->nome = $req->input('nome');
-        $cliente->endereco = $req->input('endereco');
-        $cliente->cep = $req->input('cep');
-        $cliente->cidade = $req->input('cidade');
-        $cliente->estado_id = $req->input('estado');
-
-        try {
-            $cliente->save();
-            return redirect()->route('cliente_lista');
-
-        } catch (\Throwable $e) {
-            return redirect()->route('cliente_cadastro');
+    function excluir($id){
+        
+        if ($id > 0){
+            $cliente = Cliente::find($id);
         }
-    }
+        $cliente->delete();
 
-    function excluir(Request $req){
-        $cliente = new Cliente();
-        $cliente->nome = $req->input('nome');
-        $cliente->endereco = $req->input('endereco');
-        $cliente->cep = $req->input('cep');
-        $cliente->cidade = $req->input('cidade');
-        $cliente->estado_id = $req->input('estado');
-
-        try {
-            $cliente->save();
-            return redirect()->route('cliente_lista');
-
-        } catch (\Throwable $e) {
-            return redirect()->route('cliente_cadastro');
-        }
+        return redirect()->route('cliente_lista');
     }
 }

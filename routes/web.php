@@ -16,13 +16,13 @@
 //});
 
 Route::get('/', 'LoginController@login')->name('login');
-Route::get('/login/entrar', 'LoginController@entrar')->name('login_entrar');
-
+Route::post('/entrar', 'LoginController@entrar')->name('login_entrar');
+Route::get('/sair', 'LoginController@sair')->name('login_sair');
+Route::get('/inicio', 'AppController@inicio')->name('inicio');
 
 Route::get('/cliente/lista', 'ClienteController@lista')->name('cliente_lista');
 Route::get('/cliente/cadastro/{id}', 'ClienteController@cadastro')->name('cliente_cadastro');
-Route::post('/cliente/incluir', 'ClienteController@incluir')->name('cliente_incluir');
-Route::post('/cliente/alterar/{id}', 'ClienteController@alterar')->name('cliente_alterar');
+Route::post('/cliente/salvar/{id}', 'ClienteController@salvar')->name('cliente_salvar');
 Route::post('/cliente/excluir/{id}', 'ClienteController@excluir')->name('cliente_excluir');
 
 Route::get('/produto/lista', 'ProdutoController@lista')->name('produto_lista');
@@ -30,6 +30,9 @@ Route::get('/produto/cadastro/{id}', 'ProdutoController@cadastro')->name('produt
 Route::post('/produto/incluir', 'ProdutoController@incluir')->name('produto_incluir');
 Route::post('/produto/alterar/{id}', 'ProdutoController@alterar')->name('produto_alterar');
 Route::post('/produto/excluir/{id}', 'ProdutoController@excluir')->name('produto_excluir');
+
+Route::get('/carrinho/lista', 'CarrinhoController@lista')->name('carrinho_lista');
+Route::get('/carrinho/incluir/{id}', 'CarrinhoController@incluir')->name('carrinho_incluir');
 
 Route::get('/venda/lista', 'VendaController@lista')->name('venda_lista');
 Route::get('/venda/cadastro/{id}', 'VendaController@cadastro')->name('venda_cadastro');

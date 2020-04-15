@@ -9,46 +9,58 @@
     <title>@yield('title')</title>
 </head>
 <body>
+    <div class="container-fluid">
 
-    <div class="container">
         @section('navbar')
-            <nav class="mb-3 navbar navbar-expand-lg navbar-dark  bg-dark">
-                
-                <a href="{{ route('login') }}">
-                    <img src="{{ url('imagens/programacao_web.svg') }}" href="{{ route('login') }}" height=40 width=200 class="d-inline-block align-top" alt="">
-                </a>
+            <div class="row">
+                <nav class="mb-3 navbar navbar-expand-lg navbar-dark  bg-dark w-100">
+               
+                    <a href="{{ route('inicio') }}">
+                        <img src="{{ url('imagens/programacao_web.svg') }}" height=40 width=200 class="d-inline-block align-top" alt="">
+                    </a>
 
-                <a class="navbar-brand mb-0 h1" href="{{ route('login') }}">Atividade 9</a>
-                
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
+                    <a class="navbar-brand mb-0 h1" href="{{ route('inicio') }}" >Atividade 9</a>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('cliente_cadastro', [ 'id' => 0 ]) }}">Cadastrar</a>
-                        </li>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('carrinho_lista') }}">Carrinho</a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('cliente_lista') }}">Listar</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('produto_lista') }}">Produtos</a>
+                            </li>
 
-                    </ul>
-                </div>
-            </nav>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login_sair') }}">Sair</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
         @show
 
         @section('titulo')
-            <div class="m-3 align-items-center">
-                <div class="col d-flex justify-content-center">
+            <div class="row">
+                <div class="col m-3 d-flex justify-content-center">
                     <h1>@yield('title')</h1>
                 </div>
             </div>
         @show
+        
+        <div class="row">
+            <div class="col-2"></div>
 
-        @yield('content')
+            <div class="col">
+                @yield('conteudo')
+            </div>
+
+            <div class="col-2"></div>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

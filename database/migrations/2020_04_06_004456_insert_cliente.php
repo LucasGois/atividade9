@@ -16,12 +16,23 @@ class InsertCliente extends Migration
     public function up()
     {
         $cliente = new Cliente();
-        $cliente->nome = "admin";
+        $cliente->usuario = "admin";
         $cliente->senha = "admin";
+        $cliente->nome = "admin";
         $cliente->endereco = "endereco";
         $cliente->cep = "89500000";
         $cliente->cidade = "Caçador";
-        $cliente->Estado = Estado::where('id', '=', 1)->first();;
+        $cliente->id_estado = 1;
+        $cliente->save();
+
+        $cliente = new Cliente();
+        $cliente->usuario = "lucas";
+        $cliente->senha = "123";
+        $cliente->nome = "Lucas";
+        $cliente->endereco = "endereco";
+        $cliente->cep = "89500000";
+        $cliente->cidade = "Caçador";
+        $cliente->id_estado = 1;
         $cliente->save();
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Cliente;
 
 class LoginController extends Controller
 {
@@ -11,17 +12,29 @@ class LoginController extends Controller
     }
 
     function entrar(Request $req){
-        $login = $req->input('login');
+        $usuario = $req->input('usuario');
         $senha = $req->input('senha');
+      
+        $cliente = Cliente::where('usuario', '=', $usuario)->first();
+  
+        if ($cliente and $cliente->senha == $senha){
 
-        $usuario = Usuario::where('login', '=', $login)->first();
+			$variavel = [
+				"usuario" => $usuario,
+                "nome" => $cliente->nome,
+                "carrinho" => []
+			];
+			session($variavel);
 
-        if ($usuario and $usuario->senha == $senha){
-            //se nao é null, entra aqui
-            //login e senha estão certos
-            return redirect()->route('listar');
+            return redirect()->route('inicio');
         } else {
-            return view("resultado", ["mensagem" => "Usuário ou senha inválidos."]);
+            return redirect()->route('login');
         }
+    }
+
+    function sair(){
+		session()->forget(["usuario", "nome"]);
+		
+		return redirect()->route('login');
     }
 }

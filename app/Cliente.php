@@ -10,6 +10,10 @@ class Cliente extends Model
     protected $primaryKey = 'id';
     
     function estado(){
-    	return $this->belongsTo('App\Estado', 'id_estado', 'id');
+    	return $this->hasOne('App\Estado', 'id', 'id_estado');
+    }
+
+    function venda(){
+    	return $this->hasMany('App\Venda', 'id', 'id_cliente');
     }
 }

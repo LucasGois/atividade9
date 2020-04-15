@@ -10,9 +10,9 @@ class Estado extends Model
     protected $primaryKey = 'id';
 
     function vendas(){
-    	return $this->hasMany('App\Venda', 'id_usuario', 'id');
+    	return $this->hasMany('App\Venda', 'id', 'id_usuario');
     }
-    function usuario(){
-    	return $this->belongsTo('App\Usuario', 'id_usuario', 'id');
+    function cliente(){
+    	return $this->belongsTo('App\Cliente', 'id', 'id_usuario');
     }
 }
